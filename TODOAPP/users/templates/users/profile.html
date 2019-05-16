@@ -1,0 +1,9 @@
+{% extends 'todos/base.html' %}
+
+{% block content %}
+    <h1>회원정보</h1>
+    <p>이름: {{user.first_name}} </p>
+    <p>이메일: {{user.email}}</p>
+    <p>아이디: {{user}} </p>
+    <p>비밀번호: {{user.password}} </p>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'todos/base.html' %}
+
+{% block content %}
+<h1>회원가입</h1>
+<form method="POST" action="{% url 'users:register' %}">
+{% csrf_token %}
+    {{form.as_p}}
+    <input type="submit"/>
+</form>
+{% endblock %}

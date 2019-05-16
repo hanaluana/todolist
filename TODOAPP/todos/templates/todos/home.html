@@ -1,0 +1,46 @@
+{% extends 'todos/base.html' %}
+
+{% block content %}
+    <h1 class="text-center">TODO APP</h1>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div class="container">
+            <div class="row">
+                <div class="col-10">
+                    <input type="text" name="content" class="form-control"/>
+                </div>
+                <div class="col-2">
+                    <input type="submit" class="btn btn-primary" value="Submit"/>
+                </div>
+            </div>
+        </div>
+    <hr>
+    </form>
+    <table class="table mt-3">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Content</th>
+          <th scope="col">Check</th>
+          <th scope="col">수정</th>
+          <th scope="col">삭제</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for todo in user.todo_set.all %}
+          <tr>
+            <th scope="row">{{todo.id }}</th>
+            {% if todo.completed %}
+                <td><strike>{{ todo.content }}</strike></td>
+            {% else %}
+                <td>{{todo.content }}</td>
+            {% endif %}
+            <td><a href="{% url 'todos:check' todo.id %}">체크</a></td>
+            <td><a href="{% url 'todos:update' todo.id %}">수정</a></td>
+            <td><a href="{% url 'todos:delete' todo.id %}">삭제</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    
+{% endblock %}
